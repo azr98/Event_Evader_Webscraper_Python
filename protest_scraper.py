@@ -9,4 +9,11 @@ page_of_protests = uClient.read()
 soup = soup(page_of_protests, "html.parser")
 
 dates = soup.findAll("td", {"class": "DiaryDayHeadingStyle"})
-print(dates)
+
+
+dates_data = []
+
+for date in dates:
+    dates_data.append(date.contents[0])
+
+print(dates_data)
