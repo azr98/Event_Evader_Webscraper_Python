@@ -33,4 +33,4 @@ def create_dates_list():
 
 
 dates_list = create_dates_list()
-print(dates_list)
+print(events_calendar)
