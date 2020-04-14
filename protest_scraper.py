@@ -33,4 +33,35 @@ def create_dates_list():
 
 
 dates_list = create_dates_list()
-print(events_calendar)
+
+events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
+
+events_list = []
+assembly_points = []
+
+for event in events:
+    if event.contents[0].lower() == "no processions":
+        events_list.append(event.contents[0])
+    else:
+        events_list.append(event.find(
+            "tr", {"class": "DataGridItemStyle"}).td.contents[0])
+        # events_list.append(event.find(
+        #     "tr", {"class": "DataGridItemStyle"}).td.td.contents[0])
+
+print(events_list)
+
+# print(events[-2].contents[0]) below
+# <td class = "DiaryDayStyle" >
+# <table border = "1" cellpadding = "4" cellspacing = "0" class = "DataGrid" rules = "all" >
+# <tr class = "DataGridHeaderStyle" >
+# <td width = "45%" > Organisation < /td >
+# <td width = "45%" > Assembly Point < /td >
+# <td width = "10%" > </td >
+# </tr >
+# <tr class = "DataGridItemStyle" >
+# <td width = "45%" > *CANCELLED * GLASGOW ORANGE DEFENDERS FLUTE BAND - withdrawn < /td >
+# <td width = "45%" > FERRY ROAD YOKER < /td >
+# <td width = "10%" > <a href = "javascript:__doPostBack('ProcessionsDiary$ctl04$ctl02$ctl00','')" > More Info < /a > </td >
+# </tr >
+# </table >
+# </td >
