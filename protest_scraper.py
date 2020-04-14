@@ -1,18 +1,19 @@
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen as uReq
 
-# Requests and read the webpage
+# Requests and reads the webpage
 my_url = "https://www.glasgow.gov.uk/futureprocessions?fPst=1"
 uClient = uReq(my_url)
 page_of_protests = uClient.read()
 
-# html parsing
+# Parsing the html page
 soup = soup(page_of_protests, "html.parser")
 events_calendar = soup.find("table", {"id": "ProcessionsDiary"})
 
+# Makes list of calendar dates from the page
+
 
 def create_dates_list():
-    # Makes list of calendar dates from the page
     today_date = events_calendar.find(
         "td", {"class": "DiaryTodayHeadingStyle"})
 
@@ -32,15 +33,17 @@ def create_dates_list():
     return dates_list
 
 
+# storing list of calendar dates
 dates_list = create_dates_list()
-
-events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
 
 
 assembly_points = []
 
+# Creates list of events
+
 
 def create_events_list():
+    events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
     events_list = []
     for event in events:
         if event.contents[0].lower() == "no processions":
