@@ -36,18 +36,24 @@ dates_list = create_dates_list()
 
 events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
 
-events_list = []
+
 assembly_points = []
 
-for event in events:
-    if event.contents[0].lower() == "no processions":
-        events_list.append(event.contents[0])
-    else:
-        events_list.append(event.find(
-            "tr", {"class": "DataGridItemStyle"}).td.contents[0])
-        # events_list.append(event.find(
-        #     "tr", {"class": "DataGridItemStyle"}).td.td.contents[0])
 
+def create_events_list():
+    events_list = []
+    for event in events:
+        if event.contents[0].lower() == "no processions":
+            events_list.append(event.contents[0])
+        else:
+            events_list.append(event.find(
+                "tr", {"class": "DataGridItemStyle"}).td.contents[0])
+            # events_list.append(event.find(
+            #     "tr", {"class": "DataGridItemStyle"}).td.td.contents[0])
+    return events_list
+
+
+events_list = create_events_list()
 print(events_list)
 
 # print(events[-2].contents[0]) below
