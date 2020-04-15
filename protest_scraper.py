@@ -51,13 +51,16 @@ def create_events_list():
         else:
             events_list.append(event.find(
                 "tr", {"class": "DataGridItemStyle"}).td.contents[0])
-            # events_list.append(event.find(
-            #     "tr", {"class": "DataGridItemStyle"}).td.td.contents[0])
     return events_list
 
 
 events_list = create_events_list()
-print(events_list)
+
+
+location = events_calendar.find(
+    "tr", {"class": "DataGridItemStyle"}).td.findNext("td").contents[0]
+
+print(location)
 
 # print(events[-2].contents[0]) below
 # <td class = "DiaryDayStyle" >
