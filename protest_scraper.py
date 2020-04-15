@@ -69,6 +69,8 @@ def create_locations_list():
 
 
 locations_list = create_locations_list()
+print(dates_list)
+print(events_list)
 print(locations_list)
 
 # print(events[-2].contents[0]) below
