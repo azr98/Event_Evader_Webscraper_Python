@@ -55,14 +55,20 @@ def create_events_list():
 
 
 events_list = create_events_list()
-events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
-locations_list = []
-for event in events:
-    if event.contents[0].lower() != "no processions":
-        location = events_calendar.find(
-            "tr", {"class": "DataGridItemStyle"}).td.findNext("td").contents[0]
-        locations_list.append(location)
 
+
+def create_locations_list():
+    events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
+    locations_list = []
+    for event in events:
+        if event.contents[0].lower() != "no processions":
+            location = events_calendar.find(
+                "tr", {"class": "DataGridItemStyle"}).td.findNext("td").contents[0]
+            locations_list.append(location)
+    return locations_list
+
+
+locations_list = create_locations_list()
 print(locations_list)
 
 # print(events[-2].contents[0]) below
