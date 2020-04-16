@@ -68,6 +68,14 @@ print(dates_list)
 print(events_list)
 print(assembly_points)
 
+filename = "processions.csv"
+f = open(filename, "w")
+
+headers = "Date, Event, Assembly Point\n"
+
+f.write(headers)
+
+
 # print(events[-2].contents[0]) below
 # <td class = "DiaryDayStyle" >
 # <table border = "1" cellpadding = "4" cellspacing = "0" class = "DataGrid" rules = "all" >
