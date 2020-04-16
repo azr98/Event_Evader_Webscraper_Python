@@ -14,16 +14,11 @@ events_calendar = soup.find("table", {"id": "ProcessionsDiary"})
 
 
 def create_dates_list():
-    today_date = events_calendar.find(
-        "td", {"class": "DiaryTodayHeadingStyle"})
-
     weekday_dates = events_calendar.findAll(
         "td", {"class": "DiaryDayHeadingStyle"})
     weekend_dates = events_calendar.findAll(
         "td", {"class": "DiaryWeekendHeadingStyle"})
     dates_list = []
-    dates_list.append(today_date.contents[0])
-
     for date in weekday_dates:
         dates_list.append(date.contents[0])
     # Weekend dates have seperate class
@@ -70,8 +65,8 @@ def create_locations_list():
 
 locations_list = create_locations_list()
 print(dates_list)
-print(events_list)
-print(locations_list)
+# print(events_list)
+# print(locations_list)
 
 # print(events[-2].contents[0]) below
 # <td class = "DiaryDayStyle" >
