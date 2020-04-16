@@ -58,13 +58,15 @@ def create_locations_list():
             location = events_calendar.find(
                 "tr", {"class": "DataGridItemStyle"}).td.findNext("td").contents[0]
             locations_list.append(location)
+        elif event.contents[0].lower() == "no processions":
+            locations_list.append("No event")
     return locations_list
 
 
 assembly_points = create_locations_list()
 print(dates_list)
-# print(events_list)
-# print(assembly_points)
+print(events_list)
+print(assembly_points)
 
 # print(events[-2].contents[0]) below
 # <td class = "DiaryDayStyle" >
