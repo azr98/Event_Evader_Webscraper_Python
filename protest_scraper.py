@@ -32,8 +32,6 @@ def create_dates_list():
 dates_list = create_dates_list()
 
 
-assembly_points = []
-
 # Creates list of events
 
 
@@ -63,10 +61,10 @@ def create_locations_list():
     return locations_list
 
 
-locations_list = create_locations_list()
+assembly_points = create_locations_list()
 print(dates_list)
 # print(events_list)
-# print(locations_list)
+# print(assembly_points)
 
 # print(events[-2].contents[0]) below
 # <td class = "DiaryDayStyle" >
