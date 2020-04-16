@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen as uReq
+import csv
 
 # Requests and reads the webpage
 my_url = "https://www.glasgow.gov.uk/futureprocessions?fPst=1"
@@ -64,30 +65,8 @@ def create_locations_list():
 
 
 assembly_points = create_locations_list()
-print(dates_list)
-print(events_list)
-print(assembly_points)
 
-filename = "processions.csv"
-f = open(filename, "w")
+with open('processions.csv', 'w', newline='') as csvfile:
+    csv_writer = csv.writer(csvfile)
+    csv_writer.writerow(['Event', 'Date', 'Assembly'])
 
-headers = "Date, Event, Assembly Point\n"
-
-f.write(headers)
-
-
-# print(events[-2].contents[0]) below
-# <td class = "DiaryDayStyle" >
-# <table border = "1" cellpadding = "4" cellspacing = "0" class = "DataGrid" rules = "all" >
-# <tr class = "DataGridHeaderStyle" >
-# <td width = "45%" > Organisation < /td >
-# <td width = "45%" > Assembly Point < /td >
-# <td width = "10%" > </td >
-# </tr >
-# <tr class = "DataGridItemStyle" >
-# <td width = "45%" > *CANCELLED * GLASGOW ORANGE DEFENDERS FLUTE BAND - withdrawn < /td >
-# <td width = "45%" > FERRY ROAD YOKER < /td >
-# <td width = "10%" > <a href = "javascript:__doPostBack('ProcessionsDiary$ctl04$ctl02$ctl00','')" > More Info < /a > </td >
-# </tr >
-# </table >
-# </td >
