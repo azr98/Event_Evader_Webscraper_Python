@@ -46,7 +46,7 @@ def create_events_list():  # Creates list of events
 events_list = create_events_list()  # Storing list of events
 
 
-def create_assembly_points_list():
+def create_assembly_points_list():  # Creates list of assembly points for events taking place
     events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
     locations_list = []
     for event in events:
@@ -59,14 +59,16 @@ def create_assembly_points_list():
     return locations_list
 
 
+# Storing list of assembly points
 assembly_points_list = create_assembly_points_list()
 
-rows = zip(events_list, dates_list, assembly_points_list)
+# Transpose from rows to columns
+columns = zip(events_list, dates_list, assembly_points_list)
 
-with open('processions.csv', 'w', newline='') as csvfile:
+with open('processions.csv', 'w', newline='') as csvfile:  # Creates and writes csv file
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(['Event', 'Date', 'Assembly'])
-    for row in rows:
-        csv_writer.writerow(row)
+    for column in columns:
+        csv_writer.writerow(column)
 
 csvfile.close()
