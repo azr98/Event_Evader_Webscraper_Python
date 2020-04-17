@@ -66,7 +66,12 @@ def create_locations_list():
 
 assembly_points = create_locations_list()
 
+rows = zip(events_list, dates_list, assembly_points)
+
 with open('processions.csv', 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(['Event', 'Date', 'Assembly'])
+    for row in rows:
+        csv_writer.writerow(row)
 
+csvfile.close()
