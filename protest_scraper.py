@@ -2,19 +2,18 @@ from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen as uReq
 import csv
 
+
 # Requests and reads the webpage
 my_url = "https://www.glasgow.gov.uk/futureprocessions?fPst=1"
 uClient = uReq(my_url)
 page_of_protests = uClient.read()
 
-# Parsing the html page
-soup = soup(page_of_protests, "html.parser")
+
+soup = soup(page_of_protests, "html.parser")  # Parsing the html page
 events_calendar = soup.find("table", {"id": "ProcessionsDiary"})
 
-# Makes list of calendar dates from the page
 
-
-def create_dates_list():
+def create_dates_list():  # Makes list of calendar dates from the page
     weekday_dates = events_calendar.findAll(
         "td", {"class": "DiaryDayHeadingStyle"})
     weekend_dates = events_calendar.findAll(
@@ -22,21 +21,17 @@ def create_dates_list():
     dates_list = []
     for date in weekday_dates:
         dates_list.append(date.contents[0])
-    # Weekend dates have seperate class
-    for date in weekend_dates:
+
+    for date in weekend_dates:  # Weekend dates have seperate class
         dates_list.append(date.contents[0])
 
     return dates_list
 
 
-# storing list of calendar dates
-dates_list = create_dates_list()
+dates_list = create_dates_list()  # Storing list of calendar dates
 
 
-# Creates list of events
-
-
-def create_events_list():
+def create_events_list():  # Creates list of events
     events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
     events_list = []
     for event in events:
@@ -48,10 +43,10 @@ def create_events_list():
     return events_list
 
 
-events_list = create_events_list()
+events_list = create_events_list()  # Storing list of events
 
 
-def create_locations_list():
+def create_assembly_points_list():
     events = events_calendar.findAll("td", {"class": "DiaryDayStyle"})
     locations_list = []
     for event in events:
@@ -64,9 +59,9 @@ def create_locations_list():
     return locations_list
 
 
-assembly_points = create_locations_list()
+assembly_points_list = create_assembly_points_list()
 
-rows = zip(events_list, dates_list, assembly_points)
+rows = zip(events_list, dates_list, assembly_points_list)
 
 with open('processions.csv', 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
