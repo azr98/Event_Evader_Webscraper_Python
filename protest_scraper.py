@@ -62,7 +62,7 @@ def create_assembly_points_list():  # Creates list of assembly points for events
 # Storing list of assembly points
 assembly_points_list = create_assembly_points_list()
 
-# Transpose from rows to columns
+# Transpose from rows to columns for the csv
 columns = zip(events_list, dates_list, assembly_points_list)
 
 with open('processions.csv', 'w', newline='') as csvfile:  # Creates and writes csv file
