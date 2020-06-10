@@ -66,6 +66,7 @@ assembly_points_list = create_assembly_points_list()
 columns = zip(events_list, dates_list, assembly_points_list)
 
 with open('processions.csv', 'w', newline='') as csvfile:  # Creates and writes csv file
+    csvfile.truncate()
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(['Event', 'Date', 'Assembly'])
     for column in columns:
