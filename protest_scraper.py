@@ -14,16 +14,20 @@ events_calendar = soup.find("table", {"id": "ProcessionsDiary"})
 
 
 def create_dates_list():  # Makes list of calendar dates from the page
+    month = events_calendar.td.table.tr.td.findNext("td")
     weekday_dates = events_calendar.findAll(
         "td", {"class": "DiaryDayHeadingStyle"})
     weekend_dates = events_calendar.findAll(
         "td", {"class": "DiaryWeekendHeadingStyle"})
     dates_list = []
+   
     for date in weekday_dates:
-        dates_list.append(date.contents[0])
+        date.contents[0] + " " + month.contents[0]
+        dates_list.append(date.contents[0][:2])
 
     for date in weekend_dates:  # Weekend dates have seperate class
-        dates_list.append(date.contents[0])
+        date.contents[0] + " " + month.contents[0]
+        dates_list.append(date.contents[0][:2])
 
     return dates_list
 
